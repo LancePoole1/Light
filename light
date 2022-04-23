@@ -1,0 +1,26 @@
+ private void deleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        string rowIndex = userDataGrid.Items.IndexOf(userDataGrid.SelectedItem).ToString();
+        int row = Convert.ToInt32(rowIndex);
+        
+        try
+        {
+
+            string delete = userdb.deleteData(
+                      userDataGrid.Columns[row].GetCellContent(row).ToString()
+                    );
+
+            MessageBox.Show("User deleted");
+
+            userDataGrid.ItemsSource = userdb.GetUsers();
+
+        }
+        catch (Exception error)
+        {
+            MessageBox.Show("Error " + error.Message);
+        }
+    }
+}
+c#
+sql
+wpf
